@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import RouterApp from "./app/services/RouterApp";
+import Provider from "./app/contexts/Provider";
 
 function App() {
+  // const [isReady, setIsReady] = useState(false);
+  // const { restore, isReady } = usePosts();
+
+  // useEffect(() => {
+  //   restore();
+  // }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider>
+      <RouterApp />
+    </Provider>
   );
+  // return <Provider>{isReady ? <RouterApp /> : "Loading..."}</Provider>;
 }
 
 export default App;
