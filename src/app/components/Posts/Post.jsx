@@ -13,8 +13,10 @@ import usePosts from "../../hooks/usePosts";
 const useStyles = makeStyles({
   root: {
     // maxWidth: 345,
+    height: "100%",
   },
   media: {
+    flexGrow: 1,
     height: 140,
   },
 });

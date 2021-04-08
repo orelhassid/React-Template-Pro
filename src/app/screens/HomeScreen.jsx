@@ -1,7 +1,7 @@
+import { Typography } from "@material-ui/core";
 import React from "react";
+import { SEO, Header } from "../components";
 import AuthForm from "../components/Forms/AuthForm";
-import CreateUserForm from "../components/Forms/CreateUserForm";
-import Header from "../components/Header/Header";
 
 import Screen from "../components/Screen/Screen";
 import useAuth from "../hooks/useAuth";
@@ -13,9 +13,14 @@ export default function HomeScreen() {
 
   return (
     <Screen isReady={isReady} center>
-      <Header title="Home Screen" subTitle={`Hi ${user.email}`} />
+      <SEO title="Home" />
+      <Header
+        title="Build your first website with Notion"
+        subTitle="Themes, RTL Support, Domain name and more"
+        center
+      />
+      <Typography>Example Websites</Typography>
       <AuthForm />
-      <CreateUserForm />
     </Screen>
   );
 }

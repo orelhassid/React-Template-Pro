@@ -50,7 +50,7 @@ export default function Fields({ fields, onChange, values, errors }) {
   };
   return (
     <>
-      <Grid container spacing={4}>
+      <Grid container>
         {fields.map((field) => {
           const value = values[field.name];
           const error = errors[field.name];

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Joi from "joi";
 import Form from "../FormsParts/Form";
 import useAlert from "../../hooks/useAlert";
@@ -25,17 +25,15 @@ const schema = Joi.object({
 const options = {
   formTitle: "CreatePostForm",
   submitLabel: "Create",
+  center: true,
 };
 
 export default function CreatePostForm() {
-  const { setAlert } = useAlert();
   const { createPost } = usePosts();
+  const [clear, setClear] = useState(false);
   const onSubmit = async (postInfo) => {
-    console.log("Form Submit", postInfo);
     await createPost(postInfo);
-    setAlert({
-      message: "Submit!",
-    });
+    setClear(true);
   };
   return (
     <Form
@@ -43,6 +41,7 @@ export default function CreatePostForm() {
       options={options}
       fields={fields}
       schema={schema}
+      reset={clear}
     />
   );
 }

@@ -30,9 +30,17 @@ export const update = (userInfo) => async (dispatch) => {
     console.error(error);
   }
 };
+export const logout = () => async (dispatch) => {
+  try {
+    return dispatch({ type: userTypes.delete });
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export default {
   register,
   login,
   update,
+  logout,
 };

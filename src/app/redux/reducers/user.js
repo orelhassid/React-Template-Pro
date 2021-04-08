@@ -1,8 +1,9 @@
 import { userTypes } from "../types";
 
 const initialState = {
-  data: [],
+  data: {},
   status: "idle",
+  userStatus: "logout",
   error: null,
 };
 
@@ -14,6 +15,13 @@ const user = (user = initialState, action) => {
     case userTypes.update:
       return {
         data: { ...user.data, ...action.payload },
+        status: "ready",
+        userStatus: "login",
+      };
+    case userTypes.delete:
+      return {
+        data: {},
+        userStatus: "logout",
         status: "ready",
       };
 

@@ -3,6 +3,7 @@ import Joi from "joi";
 import Form from "../FormsParts/Form";
 import useAlert from "../../hooks/useAlert";
 import useAuth from "../../hooks/useAuth";
+import GoogleAuth from "../Auth/GoogleAuth";
 
 const fields = [
   {
@@ -39,12 +40,10 @@ export default function AuthForm() {
       message: "Submit!",
     });
   };
+
   return (
-    <Form
-      onSubmit={onSubmit}
-      options={options}
-      fields={fields}
-      schema={schema}
-    />
+    <Form onSubmit={onSubmit} options={options} fields={fields} schema={schema}>
+      <GoogleAuth />
+    </Form>
   );
 }

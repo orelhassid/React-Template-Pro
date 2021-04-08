@@ -42,6 +42,7 @@ export default function PostSettingsForm() {
   const onSubmit = async (postInfo) => {
     console.log("Form Submit", postInfo);
     await updatePost(postInfo);
+    setPost({});
   };
   return (
     <Form

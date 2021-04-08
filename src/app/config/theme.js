@@ -20,8 +20,8 @@ const theme = createMuiTheme({
     fontFamily: FONTS.join(","),
 
     h1: {
-      fontSize: "2rem",
-      fontWeight: 500,
+      fontSize: "2.8rem",
+      fontWeight: 600,
       fontFamily: fontBodyName,
     },
     h2: {
@@ -30,6 +30,10 @@ const theme = createMuiTheme({
     },
     h3: {
       fontSize: "1.2rem",
+      fontWeight: 500,
+    },
+    subtitle1: {
+      fontSize: "1rem",
       fontWeight: 500,
     },
     subtitle2: {
@@ -52,9 +56,6 @@ const theme = createMuiTheme({
       lineHeight: "16px",
       letterSpacing: "0.75px",
       textAlign: "left",
-    },
-    subtitle1: {
-      fontSize: "0.8rem",
     },
   },
   palette: {

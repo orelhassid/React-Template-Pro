@@ -7,6 +7,7 @@ import { AuthContextProvider } from "./auth";
 import { PostsContextProvider } from "./posts";
 import { AlertContextProvider } from "./alert";
 import AppLoading from "../components/AppLoading/AppLoading";
+import { HelmetProvider } from "react-helmet-async";
 
 export default function Provider({ children }) {
   const [isReady, setIsReady] = useState(false);
@@ -16,7 +17,9 @@ export default function Provider({ children }) {
         <AlertContextProvider>
           <AuthContextProvider>
             <PostsContextProvider setIsReady={setIsReady}>
-              {isReady ? children : <AppLoading />}
+              <HelmetProvider>
+                {isReady ? children : <AppLoading />}
+              </HelmetProvider>
             </PostsContextProvider>
           </AuthContextProvider>
         </AlertContextProvider>

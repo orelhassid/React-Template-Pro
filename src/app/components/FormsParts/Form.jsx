@@ -1,17 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, makeStyles, Typography } from "@material-ui/core";
 import Fields from "./Fields";
 import Button from "../Button/Button";
+import useStyles from "./style";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    // display: "flex",
-  },
-}));
-
-export default function Form({ fields, schema, onSubmit, options, newData }) {
+export default function Form({
+  fields,
+  schema,
+  onSubmit,
+  options,
+  newData,
+  reset,
+  children,
+}) {
   const { formTitle, buttons, submitLabel, submitDisabled } = options;
-  const [data, setData] = useState(() => {
+
+  const [data, setData] = useState({});
+  const [errors, setErrors] = useState({});
+
+  const [isReady, setIsReady] = useState(false);
+  const classes = useStyles();
+
+  React.useEffect(() => {
+    setData(getInitialValues());
+    setIsReady(true);
+  }, []);
+
+  useEffect(() => {
+    reset && setData(getInitialValues());
+  }, [reset]);
+
+  const getInitialValues = () => {
     let state = {};
     fields.forEach(({ name, defaultValue }) => {
       if (newData) {
@@ -20,13 +39,8 @@ export default function Form({ fields, schema, onSubmit, options, newData }) {
         state[name] = defaultValue !== undefined ? defaultValue : "";
       }
     });
-
     return state;
-  });
-
-  const classes = useStyles();
-
-  const [errors, setErrors] = useState({});
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,44 +74,52 @@ export default function Form({ fields, schema, onSubmit, options, newData }) {
   };
 
   return (
-    <Box py={4} className={classes.container} maxWidth={640}>
+    <Box
+      className={classes.formContainer}
+      mx={options.center ? "auto" : "inherit"}
+    >
       {formTitle && (
         <Box pb={2}>
           <Typography variant="h3">{formTitle}</Typography>
         </Box>
       )}
-      <form onSubmit={handleSubmit}>
-        <Fields
-          fields={fields}
-          onChange={handleChange}
-          values={data}
-          errors={errors}
-        />
-        <Box py={2} textAlign="center">
-          <Button
-            label={submitLabel}
-            type="submit"
-            variant="contained"
-            color="primary"
-            textColor="#fff"
-            disabled={submitDisabled}
+
+      {isReady && (
+        <form onSubmit={handleSubmit}>
+          <Fields
+            fields={fields}
+            onChange={handleChange}
+            values={data}
+            errors={errors}
           />
-          <Box py={1}>
-            {buttons?.map(({ button, ...rest }, index) =>
-              button ? (
-                <React.Fragment key={index}>{button}</React.Fragment>
-              ) : (
-                <Button key={index} {...rest} />
-              )
-            )}
+          <Box py={2} textAlign="center">
+            <Button
+              label={submitLabel}
+              type="submit"
+              variant="contained"
+              color="primary"
+              textColor="#fff"
+              disabled={submitDisabled}
+            />
+            <Box py={1}>
+              {buttons?.map(({ button, ...rest }, index) =>
+                button ? (
+                  <React.Fragment key={index}>{button}</React.Fragment>
+                ) : (
+                  <Button key={index} {...rest} />
+                )
+              )}
+            </Box>
+            {children}
           </Box>
-        </Box>
-      </form>
+        </form>
+      )}
     </Box>
   );
 }
 
 Form.defaultProps = {
+  reset: false,
   options: {
     buttons: [],
     submitLabel: "Submit",

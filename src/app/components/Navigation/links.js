@@ -6,6 +6,7 @@ import LogoutIcon from "@material-ui/icons/ExitToApp";
 import { HOME_RT, ACCOUNT_RT, LOGOUT_RT, POSTS_RT } from "../../config/routes";
 
 function getLinks(user, status) {
+  console.log("Get Links", { user, status });
   return [
     {
       label: "Home",
@@ -18,7 +19,8 @@ function getLinks(user, status) {
       icon: <PostsIcon />,
     },
     {
-      label: user.name,
+      // label: user.name,
+      label: "Account",
       to: ACCOUNT_RT,
       icon: <AccountIcon />,
       hide: !status.isLogin,

@@ -6,6 +6,8 @@ export const storageKeys = {
   user: "USER",
 };
 
+export const cloudflare = {};
+
 export default {
   app,
   storageKeys,
