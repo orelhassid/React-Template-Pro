@@ -35,5 +35,11 @@ const useStyles = makeStyles((theme) => ({
       color: "#fff",
     },
   },
+
+  // NavBar
+  linkItem: {
+    // color: "red",
+  },
+  linkItemFocused: {},
 }));
 export default useStyles;

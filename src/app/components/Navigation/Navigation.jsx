@@ -16,6 +16,7 @@ import Button from "../Button/Button";
 import navigation from "./links";
 import useStyles from "./styles";
 import { ReactComponent as Logo } from "../../assets/icons/logo.svg";
+import NavLinks from "./NavLinks";
 
 export default function Navigation({ back }) {
   const classes = useStyles();
@@ -62,20 +63,7 @@ export default function Navigation({ back }) {
             <Drawer />
           </Box>
         ) : (
-          links.map(
-            (item) =>
-              !item.hide && (
-                <Button
-                  color="inherit"
-                  textColor="#fff"
-                  to={item.to}
-                  label={item.label}
-                  variant="text"
-                  key={item.to}
-                  Icon={item.icon}
-                />
-              )
-          )
+          <NavLinks links={links} />
         )}
       </Toolbar>
     </AppBar>

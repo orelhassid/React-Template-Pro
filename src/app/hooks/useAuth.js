@@ -66,7 +66,6 @@ const useAuth = () => {
 
     let user = storage.get(storageKeys.user);
     user = mapUserObject(user);
-    console.log("Restore", user);
 
     dispatch({ type: userTypes.update, payload: user });
 
